@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Document Oracle - AI QnA Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Space Grotesk & Inter Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Interactive Matrix Particle Background Container -->
+    <div class="neon-ambient-overlay"></div>
+    <div class="orb orb-cyan"></div>
+    <div class="orb orb-purple"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="glass-header">
+            <div class="logo-area">
+                <div class="synapse-pulsar"></div>
+                <h1>DOCUMENT <span class="gradient-text">ORACLE</span></h1>
+            </div>
+            <div class="status-badge" id="model-status">
+                <span class="status-dot pulse"></span>
+                <span class="status-text">Transformers Engine Active</span>
+            </div>
+        </header>
+
+        <!-- Main Content Grid -->
+        <main class="grid-layout">
+            <!-- Left Side: Input Context Panel -->
+            <section class="glass-card input-panel">
+                <div class="panel-header">
+                    <span class="step-indicator">STEP 01</span>
+                    <h2>Context Feed</h2>
+                    <button class="utility-btn" id="load-demo-btn">Load Sample Paper</button>
+                </div>
+                <div class="textarea-wrapper">
+                    <!-- Context Highlighter Layer for Overlay Highlights -->
+                    <div id="highlight-backdrop" class="highlight-backdrop"></div>
+                    <textarea id="context-input" placeholder="Paste your research paper, article, or documentation text here..."></textarea>
+                </div>
+                <div class="char-counter">
+                    <span id="char-count">0</span> characters loaded
+                </div>
+            </section>
+
+            <!-- Right Side: Chat/Query Panel -->
+            <section class="glass-card query-panel">
+                <div class="panel-header">
+                    <span class="step-indicator">STEP 02</span>
+                    <h2>Query Stream</h2>
+                </div>
+                
+                <!-- Output/Answer Field -->
+                <div class="response-viewport" id="response-viewport">
+                    <div class="placeholder-message" id="initial-message">
+                        <div class="placeholder-icon">🤖</div>
+                        <h3>System Ready</h3>
+                        <p>Provide a context document on the left, then ask me anything about it below. I'll scan the text using our DistilBERT transformer pipeline to extract answers.</p>
+                    </div>
+                </div>
+
+                <!-- Input Field -->
+                <div class="input-bar-container">
+                    <div class="glow-input-wrapper">
+                        <input type="text" id="question-input" placeholder="Ask your question here..." disabled autocomplete="off">
+                        <button id="ask-btn" class="synaptic-btn" disabled>
+                            <span class="btn-text">INQUIRE</span>
+                            <div class="btn-loader"></div>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

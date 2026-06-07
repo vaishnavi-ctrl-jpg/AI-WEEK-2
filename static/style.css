@@ -4,24 +4,30 @@
 */
 
 :root {
-    /* Color Tokens (Light Earthy Forest & Sage Palette) */
-    --surface: #f4f8e6;
-    --surface-dim: #ebf1d2;
-    --surface-bright: #dce7c1;
-    --surface-container: rgba(255, 255, 255, 0.7);
-    --surface-border: rgba(46, 87, 58, 0.15);
+    /* Color Tokens (Earthy Forest & Sage Palette from Image) */
+    --color-1: #edf6a3; /* Lightest (Pale Lime) */
+    --color-2: #85ae5d; /* Light-Medium Green (Moss) */
+    --color-3: #4c7a41; /* Medium-Dark Green (Forest) */
+    --color-4: #2e573a; /* Dark Green (Deep Forest) */
+    --color-5: #0e2218; /* Darkest Green (Obsidian/Background) */
+
+    --surface: var(--color-1); /* Page background: Lightest */
+    --surface-dim: var(--color-2);
+    --surface-bright: var(--color-4);
+    --surface-container: var(--color-5); /* Card background: Darkest */
+    --surface-border: var(--color-3);
     
-    --primary: #4c7a41;
-    --primary-glow: rgba(76, 122, 65, 0.2);
-    --secondary: #2e573a;
-    --secondary-glow: rgba(46, 87, 58, 0.15);
+    --primary: var(--color-2); /* Primary buttons, highlights */
+    --primary-glow: rgba(133, 174, 93, 0.25);
+    --secondary: var(--color-1);
+    --secondary-glow: rgba(237, 246, 163, 0.15);
     --tertiary: #df6e6e;
     
-    --text-primary: #15261b;
-    --text-secondary: #324e3d;
-    --text-muted: #5e7968;
+    --text-primary: #ffffff; /* White text for cards */
+    --text-secondary: var(--color-1); /* Lightest color for secondary card text */
+    --text-muted: var(--color-2);      /* Moss for muted card text */
     
-    --success: #4c7a41;
+    --success: var(--color-2);
     
     /* Typography Tokens */
     --font-display: 'Space Grotesk', sans-serif;
@@ -30,9 +36,9 @@
     
     /* Elevation / Shadows */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 8px 32px rgba(46, 87, 58, 0.08), 0 0 0 1px rgba(46, 87, 58, 0.05);
-    --shadow-lg: 0 16px 48px rgba(46, 87, 58, 0.12), 0 0 0 1px rgba(46, 87, 58, 0.08);
-    --shadow-synapse: 0 0 30px rgba(76, 122, 65, 0.15), 0 8px 24px rgba(46, 87, 58, 0.1);
+    --shadow-md: 0 8px 32px rgba(14, 34, 24, 0.15), 0 0 0 1px rgba(14, 34, 24, 0.05);
+    --shadow-lg: 0 16px 48px rgba(14, 34, 24, 0.2), 0 0 0 1px rgba(14, 34, 24, 0.08);
+    --shadow-synapse: 0 0 30px rgba(133, 174, 93, 0.2), 0 8px 24px rgba(14, 34, 24, 0.15);
 }
 
 * {
@@ -58,7 +64,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(244, 248, 230, 0.95) 100%);
+    background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(237, 246, 163, 0.95) 100%);
     z-index: -1;
 }
 
@@ -72,7 +78,7 @@ body {
 }
 
 .orb-cyan {
-    background-color: var(--primary);
+    background-color: var(--color-2);
     width: 500px;
     height: 500px;
     top: -100px;
@@ -80,7 +86,7 @@ body {
 }
 
 .orb-purple {
-    background-color: var(--secondary);
+    background-color: var(--color-3);
     width: 600px;
     height: 600px;
     bottom: -150px;
@@ -165,8 +171,8 @@ body {
 }
 
 .status-badge {
-    background: rgba(225, 240, 149, 0.1);
-    border: 1px solid rgba(225, 240, 149, 0.2);
+    background: rgba(237, 246, 163, 0.1);
+    border: 1px solid rgba(237, 246, 163, 0.2);
     padding: 6px 16px;
     border-radius: 30px;
     display: flex;
@@ -271,7 +277,7 @@ body {
 .textarea-wrapper {
     flex-grow: 1;
     position: relative;
-    background: rgba(255, 255, 255, 0.45);
+    background: rgba(0, 0, 0, 0.25);
     overflow: hidden;
 }
 
@@ -450,7 +456,7 @@ mark.ai-highlight {
     padding: 24px;
     border-top: 1px solid var(--surface-border);
     flex-shrink: 0;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(0, 0, 0, 0.15);
 }
 
 .glow-input-wrapper {
@@ -458,7 +464,7 @@ mark.ai-highlight {
     display: flex;
     align-items: center;
     border: 1px solid var(--surface-border);
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(0, 0, 0, 0.25);
     border-radius: 30px;
     padding: 6px 6px 6px 20px;
     transition: all 0.3s ease;

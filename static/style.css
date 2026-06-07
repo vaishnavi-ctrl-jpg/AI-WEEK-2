@@ -4,24 +4,24 @@
 */
 
 :root {
-    /* Color Tokens */
-    --surface: #080b11;
-    --surface-dim: #0e131f;
-    --surface-bright: #192233;
-    --surface-container: rgba(21, 29, 46, 0.6);
-    --surface-border: rgba(255, 255, 255, 0.08);
+    /* Color Tokens (Earthy Forest & Sage Palette) */
+    --surface: #0a120e;
+    --surface-dim: #111d17;
+    --surface-bright: #293c33;
+    --surface-container: rgba(17, 29, 23, 0.6);
+    --surface-border: rgba(225, 240, 149, 0.12);
     
-    --primary: #00e5ff;
-    --primary-glow: rgba(0, 229, 255, 0.25);
-    --secondary: #7c4dff;
-    --secondary-glow: rgba(124, 77, 255, 0.2);
-    --tertiary: #ff3366;
+    --primary: #e1f095;
+    --primary-glow: rgba(225, 240, 149, 0.25);
+    --secondary: #7fa757;
+    --secondary-glow: rgba(127, 167, 87, 0.2);
+    --tertiary: #df6e6e;
     
-    --text-primary: #f8f9fa;
-    --text-secondary: #a4b3c6;
-    --text-muted: #677d98;
+    --text-primary: #f0f5f2;
+    --text-secondary: #9cb7a9;
+    --text-muted: #637d70;
     
-    --success: #00e676;
+    --success: #7fa757;
     
     /* Typography Tokens */
     --font-display: 'Space Grotesk', sans-serif;
@@ -30,9 +30,9 @@
     
     /* Elevation / Shadows */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
-    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
-    --shadow-synapse: 0 0 30px rgba(0, 229, 255, 0.2), 0 8px 24px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(225, 240, 149, 0.05);
+    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(225, 240, 149, 0.08);
+    --shadow-synapse: 0 0 30px rgba(225, 240, 149, 0.2), 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 * {

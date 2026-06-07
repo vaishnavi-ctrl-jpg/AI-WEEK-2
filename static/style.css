@@ -365,9 +365,35 @@ mark.ai-highlight {
     opacity: 0.7;
 }
 
-.placeholder-icon {
-    font-size: 42px;
-    margin-bottom: 16px;
+/* Custom Robo SVG styles */
+.robo-logo-svg {
+    display: block;
+    margin: 0 auto 20px auto;
+    animation: roboFloat 4s ease-in-out infinite;
+    filter: drop-shadow(0 8px 24px rgba(14, 34, 24, 0.35));
+}
+
+@keyframes roboFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.robo-eye {
+    animation: eyePulse 3s infinite alternate;
+}
+
+@keyframes eyePulse {
+    0%, 100% { opacity: 0.9; filter: drop-shadow(0 0 1px var(--color-1)); }
+    50% { opacity: 1; filter: drop-shadow(0 0 6px var(--color-1)); }
+}
+
+.robo-antenna-bulb {
+    animation: antennaPulse 2s infinite alternate;
+}
+
+@keyframes antennaPulse {
+    0%, 100% { fill: var(--color-1); opacity: 0.8; }
+    50% { fill: #ffffff; opacity: 1; filter: drop-shadow(0 0 10px var(--color-1)); }
 }
 
 .placeholder-message h3 {

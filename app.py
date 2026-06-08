@@ -53,33 +53,45 @@ async def ask_question(request: QueryRequest):
         raise HTTPException(status_code=400, detail="Context and question cannot be empty.")
 
     try:
-        inputs = tokenizer(question, context, return_tensors="pt")
+        # Tokenize with offsets mapping to precisely track token-to-character spans
+        encoding = tokenizer(question, context, return_offsets_mapping=True)
+        
+        # Prepare inputs for the PyTorch model (remove non-tensor fields like offset_mapping)
+        model_inputs = {k: torch.tensor([v]) for k, v in encoding.items() if k != "offset_mapping"}
+        
         with torch.no_grad():
-            outputs = model(**inputs)
+            outputs = model(**model_inputs)
 
         start_idx = outputs.start_logits.argmax().item()
         end_idx = outputs.end_logits.argmax().item()
         
-        predict_answer_tokens = inputs.input_ids[0, start_idx : end_idx + 1]
-        raw_answer = tokenizer.decode(predict_answer_tokens, skip_special_tokens=True).strip()
+        offsets = encoding["offset_mapping"]
+        sequence_ids = encoding.sequence_ids(0)
         
-        # Approximate char indices
-        start_char = context.find(raw_answer)
+        # Filter token indices belonging to the context (seq_id == 1)
+        context_tokens = [i for i, seq_id in enumerate(sequence_ids) if seq_id == 1]
         
-        if start_char == -1:
-            start_char = context.lower().find(raw_answer.lower())
-            
-        if start_char == -1:
-            clean_context = context.replace(" ", "").lower()
-            clean_answer = raw_answer.replace(" ", "").lower()
-            idx = clean_context.find(clean_answer)
-            if idx != -1:
-                start_char = -1
-                
-        if start_char == -1:
+        if not context_tokens:
+            start_char = -1
             end_char = -1
+            raw_answer = ""
         else:
-            end_char = start_char + len(raw_answer)
+            # Clamp the predictions to context token boundaries
+            pred_start = max(start_idx, min(context_tokens))
+            pred_end = min(end_idx, max(context_tokens))
+            
+            if pred_start <= pred_end and sequence_ids[pred_start] == 1 and sequence_ids[pred_end] == 1:
+                start_char = offsets[pred_start][0]
+                end_char = offsets[pred_end][1]
+                raw_answer = context[start_char:end_char].strip()
+            else:
+                # Fallback to string matching if predictions are outside context token range
+                predict_tokens = model_inputs["input_ids"][0, start_idx : end_idx + 1]
+                raw_answer = tokenizer.decode(predict_tokens, skip_special_tokens=True).strip()
+                start_char = context.find(raw_answer)
+                if start_char == -1:
+                    start_char = context.lower().find(raw_answer.lower())
+                end_char = start_char + len(raw_answer) if start_char != -1 else -1
 
         return {
             "answer": raw_answer,
